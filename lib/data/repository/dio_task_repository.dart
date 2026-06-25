@@ -112,16 +112,16 @@ class DioTaskRepository implements TaskRepository {
     final data = json?['data'];
     final meta = json?['meta'];
     if (data is! List) {
-      throw const FormatException('Invalid task list response');
+      throw const FormatException('Respons daftar tugas tidak valid');
     }
     if (meta is! Map<String, dynamic>) {
-      throw const FormatException('Invalid task pagination response');
+      throw const FormatException('Respons pagination tugas tidak valid');
     }
 
     final currentPage = meta['current_page'];
     final lastPage = meta['last_page'];
     if (currentPage is! int || lastPage is! int) {
-      throw const FormatException('Invalid pagination metadata');
+      throw const FormatException('Metadata pagination tidak valid');
     }
 
     return PaginatedTasks(
@@ -136,7 +136,7 @@ class DioTaskRepository implements TaskRepository {
   Task _parseTaskObject(Map<String, dynamic>? json) {
     final data = json?['data'];
     if (data is! Map<String, dynamic>) {
-      throw const FormatException('Invalid task response');
+      throw const FormatException('Respons tugas tidak valid');
     }
     return Task.fromJson(data);
   }
@@ -194,13 +194,13 @@ class DioTaskRepository implements TaskRepository {
       }
 
       return ApiException(
-        data['message'] as String? ?? 'Request failed',
+        data['message'] as String? ?? 'Permintaan gagal',
         fieldErrors: fieldErrors,
       );
     }
 
     return ApiException(
-      error.message ?? 'Could not connect to the task server',
+      error.message ?? 'Tidak dapat terhubung ke server tugas',
     );
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class EmptyTasks extends StatelessWidget {
   const EmptyTasks({
     super.key,
-    this.title = 'No tasks yet',
-    this.description = 'Add your first task to start tracking progress.',
+    this.title = 'Belum ada tugas',
+    this.description = 'Tambahkan tugas pertama untuk mulai melacak progres.',
     this.icon = Icons.task_alt_rounded,
   });
 

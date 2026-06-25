@@ -127,9 +127,9 @@ class _TaskListPageState extends ConsumerState<TaskListPage> {
                     if (taskState.tasks.isEmpty) {
                       return EmptyTasks(
                         title:
-                            'Tidak ada task ${taskState.statusFilter.label.toLowerCase()}',
+                            'Tidak ada tugas ${taskState.statusFilter.label.toLowerCase()}',
                         description: taskState.searchQuery.isEmpty
-                            ? 'Daftar ini masih kosong. Tambahkan task baru atau pindahkan status dari halaman detail.'
+                            ? 'Daftar ini masih kosong. Tambahkan tugas baru atau pindahkan status dari halaman detail.'
                             : 'Belum ada hasil untuk pencarian "${taskState.searchQuery}". Coba kata kunci lain.',
                         icon: taskState.searchQuery.isEmpty
                             ? Icons.inbox_rounded
@@ -183,7 +183,7 @@ class _TaskListPageState extends ConsumerState<TaskListPage> {
           ).push(MaterialPageRoute<void>(builder: (_) => const AddTaskPage()));
         },
         icon: const Icon(Icons.add_rounded),
-        label: const Text('New task'),
+        label: const Text('Tugas baru'),
       ),
     );
   }
@@ -193,12 +193,12 @@ class _TaskListPageState extends ConsumerState<TaskListPage> {
       controller: _searchController,
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
-        hintText: 'Cari judul task',
+        hintText: 'Cari judul tugas',
         prefixIcon: const Icon(Icons.search_rounded),
         suffixIcon: _searchController.text.isEmpty
             ? null
             : IconButton(
-                tooltip: 'Clear search',
+                tooltip: 'Hapus pencarian',
                 onPressed: () {
                   _searchController.clear();
                   setState(() {});
@@ -254,7 +254,7 @@ class _PageHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Task Tracker',
+                'Pelacak Tugas',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w900,
                   letterSpacing: -1.2,
@@ -353,7 +353,7 @@ class _SortButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<TaskSortOption>(
-      tooltip: 'Sorting',
+      tooltip: 'Urutkan',
       onSelected: onSelected,
       itemBuilder: (context) => [
         for (final option in TaskSortOption.values)
@@ -385,7 +385,7 @@ class _SortButton extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              'Sort: ${selectedOption.label}',
+              'Urutkan: ${selectedOption.label}',
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 color: const Color(0xFF111827),
                 fontWeight: FontWeight.w700,

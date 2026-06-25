@@ -17,12 +17,12 @@ void main() {
     await _scrollUntilVisible(tester, find.text('Belajar Riverpod'));
     await _scrollUntilVisible(tester, find.text('Rapikan backlog mobile'));
 
-    expect(find.text('Task Tracker'), findsOneWidget);
+    expect(find.text('Pelacak Tugas'), findsOneWidget);
     expect(find.text('Belajar Riverpod'), findsOneWidget);
     expect(find.text('Rapikan backlog mobile'), findsOneWidget);
-    expect(find.text('Pending'), findsWidgets);
+    expect(find.text('Menunggu'), findsWidgets);
     expect(find.text('Sambungkan API detail'), findsNothing);
-    expect(find.textContaining('Sort:'), findsOneWidget);
+    expect(find.textContaining('Urutkan:'), findsOneWidget);
   });
 
   testWidgets('renders explicit status on task detail page', (tester) async {
@@ -33,16 +33,16 @@ void main() {
     await tester.tap(find.text('Belajar Riverpod'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Task Detail'), findsOneWidget);
+    expect(find.text('Detail Tugas'), findsOneWidget);
     expect(find.text('Status'), findsOneWidget);
-    expect(find.text('Pending'), findsWidgets);
+    expect(find.text('Menunggu'), findsWidgets);
   });
 
   testWidgets('switches between pending and done tabs', (tester) async {
     await tester.pumpWidget(_appWithRepository(_FakeTaskRepository()));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Done'));
+    await tester.tap(find.text('Selesai'));
     await tester.pumpAndSettle();
     await _scrollUntilVisible(tester, find.text('Sambungkan API detail'));
 
@@ -60,7 +60,7 @@ void main() {
     await _scrollUntilVisible(tester, find.text('Belajar Riverpod'));
 
     expect(find.text('Belajar Riverpod'), findsOneWidget);
-    expect(find.text('Tidak ada task pending'), findsNothing);
+    expect(find.text('Tidak ada tugas menunggu'), findsNothing);
   });
 
   testWidgets('changes sorting order from newest to title a-z', (tester) async {
@@ -78,9 +78,9 @@ void main() {
       findsOneWidget,
     );
 
-    await tester.tap(find.text('Sort: Newest first'));
+    await tester.tap(find.text('Urutkan: Terbaru'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Title A-Z').last);
+    await tester.tap(find.text('Judul A-Z').last);
     await tester.pumpAndSettle();
     await _scrollUntilVisible(tester, find.text('Belajar Riverpod'));
     await _scrollUntilVisible(tester, find.text('Rapikan backlog mobile'));
@@ -110,34 +110,34 @@ void main() {
   ) async {
     await tester.pumpWidget(_appWithRepository(_FakeTaskRepository(tasks: [])));
     await tester.pumpAndSettle();
-    await _scrollUntilVisible(tester, find.text('Tidak ada task pending'));
+    await _scrollUntilVisible(tester, find.text('Tidak ada tugas menunggu'));
 
-    expect(find.text('Tidak ada task pending'), findsOneWidget);
+    expect(find.text('Tidak ada tugas menunggu'), findsOneWidget);
   });
 
   testWidgets('renders API error state', (tester) async {
     await tester.pumpWidget(
       _appWithRepository(
-        _FakeTaskRepository(error: const ApiException('Server is unavailable')),
+        _FakeTaskRepository(error: const ApiException('Server sedang tidak tersedia')),
       ),
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Unable to load tasks'), findsOneWidget);
-    expect(find.text('Server is unavailable'), findsOneWidget);
+    expect(find.text('Gagal memuat tugas'), findsOneWidget);
+    expect(find.text('Server sedang tidak tersedia'), findsOneWidget);
   });
 
   testWidgets('validates add task form', (tester) async {
     await tester.pumpWidget(_appWithRepository(_FakeTaskRepository()));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('New task'));
+    await tester.tap(find.text('Tugas baru'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Save task'));
+    await tester.tap(find.text('Simpan tugas'));
     await tester.pump();
 
-    expect(find.text('Title is required'), findsOneWidget);
-    expect(find.text('Description is required'), findsOneWidget);
+    expect(find.text('Judul wajib diisi'), findsOneWidget);
+    expect(find.text('Deskripsi wajib diisi'), findsOneWidget);
   });
 }
 
@@ -170,7 +170,7 @@ class _FakeTaskRepository implements TaskRepository {
     Task(
       id: 1,
       title: 'Belajar Riverpod',
-      description: 'Pelajari state management untuk halaman daftar task.',
+      description: 'Pelajari state management untuk halaman daftar tugas.',
       status: TaskStatus.pending,
       createdAt: _now,
       updatedAt: _now,
@@ -178,7 +178,7 @@ class _FakeTaskRepository implements TaskRepository {
     Task(
       id: 3,
       title: 'Rapikan backlog mobile',
-      description: 'Pisahkan task mendesak dan task nice to have.',
+      description: 'Pisahkan tugas mendesak dan tugas nice to have.',
       status: TaskStatus.pending,
       createdAt: _now.add(const Duration(minutes: 15)),
       updatedAt: _now.add(const Duration(minutes: 15)),
@@ -186,7 +186,7 @@ class _FakeTaskRepository implements TaskRepository {
     Task(
       id: 2,
       title: 'Sambungkan API detail',
-      description: 'Tampilkan detail task saat item dipilih.',
+      description: 'Tampilkan detail tugas saat item dipilih.',
       status: TaskStatus.done,
       createdAt: _now,
       updatedAt: _now,

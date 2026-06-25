@@ -1,8 +1,8 @@
 import '../../data/task.dart';
 
 enum TaskStatusFilter {
-  pending(TaskStatus.pending, 'Pending'),
-  done(TaskStatus.done, 'Done');
+  pending(TaskStatus.pending, 'Menunggu'),
+  done(TaskStatus.done, 'Selesai');
 
   const TaskStatusFilter(this.status, this.label);
 
@@ -14,25 +14,25 @@ enum TaskSortOption {
   newestFirst(
     sortBy: 'created_at',
     sortDirection: 'desc',
-    label: 'Newest first',
-    description: 'Task terbaru muncul paling atas',
+    label: 'Terbaru',
+    description: 'Tugas terbaru muncul paling atas',
   ),
   oldestFirst(
     sortBy: 'created_at',
     sortDirection: 'asc',
-    label: 'Oldest first',
-    description: 'Task paling lama ditampilkan dulu',
+    label: 'Terlama',
+    description: 'Tugas paling lama ditampilkan dulu',
   ),
   titleAZ(
     sortBy: 'title',
     sortDirection: 'asc',
-    label: 'Title A-Z',
+    label: 'Judul A-Z',
     description: 'Urut alfabet dari A ke Z',
   ),
   titleZA(
     sortBy: 'title',
     sortDirection: 'desc',
-    label: 'Title Z-A',
+    label: 'Judul Z-A',
     description: 'Urut alfabet dari Z ke A',
   );
 

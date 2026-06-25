@@ -6,7 +6,7 @@ enum TaskStatus {
     return switch (value) {
       'done' => TaskStatus.done,
       'pending' => TaskStatus.pending,
-      _ => throw FormatException('Unknown task status: $value'),
+      _ => throw FormatException('Status tugas tidak dikenal: $value'),
     };
   }
 
@@ -16,8 +16,8 @@ enum TaskStatus {
   };
 
   String get label => switch (this) {
-    TaskStatus.pending => 'Pending',
-    TaskStatus.done => 'Done',
+    TaskStatus.pending => 'Menunggu',
+    TaskStatus.done => 'Selesai',
   };
 
   TaskStatus get toggled => switch (this) {

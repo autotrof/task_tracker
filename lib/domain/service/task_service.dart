@@ -36,7 +36,7 @@ class TaskService {
     final trimmedDescription = description.trim();
 
     if (trimmedTitle.isEmpty || trimmedDescription.isEmpty) {
-      throw const ApiException('Title and description are required');
+      throw const ApiException('Judul dan deskripsi wajib diisi');
     }
 
     return _repository.createTask(

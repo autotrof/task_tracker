@@ -35,7 +35,7 @@ class ErrorState extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             Text(
-              'Unable to load tasks',
+              'Gagal memuat tugas',
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
@@ -53,7 +53,7 @@ class ErrorState extends StatelessWidget {
             FilledButton.icon(
               onPressed: onRetry,
               icon: const Icon(Icons.refresh_rounded),
-              label: const Text('Try again'),
+              label: const Text('Coba lagi'),
             ),
           ],
         ),

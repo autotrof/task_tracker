@@ -16,7 +16,7 @@ class TaskDetailPage extends ConsumerWidget {
     final detail = ref.watch(taskDetailProvider(taskId));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Task Detail')),
+      appBar: AppBar(title: const Text('Detail Tugas')),
       body: detail.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stackTrace) => ErrorState(
@@ -75,12 +75,12 @@ class _TaskDetailContent extends ConsumerWidget {
               _MetadataRow(label: 'Status', value: task.status.label),
               const Divider(height: 24),
               _MetadataRow(
-                label: 'Created',
+                label: 'Dibuat',
                 value: _formatDate(task.createdAt),
               ),
               const Divider(height: 24),
               _MetadataRow(
-                label: 'Updated',
+                label: 'Diperbarui',
                 value: _formatDate(task.updatedAt),
               ),
             ],
@@ -100,7 +100,7 @@ class _TaskDetailContent extends ConsumerWidget {
                   return;
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Task status updated')),
+                  const SnackBar(content: Text('Status tugas berhasil diperbarui')),
                 );
               } catch (error) {
                 if (!context.mounted) {
@@ -118,8 +118,8 @@ class _TaskDetailContent extends ConsumerWidget {
             ),
             label: Text(
               task.status == TaskStatus.done
-                  ? 'Mark as pending'
-                  : 'Mark as done',
+                  ? 'Tandai sebagai menunggu'
+                  : 'Tandai sebagai selesai',
             ),
           ),
         ),

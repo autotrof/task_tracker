@@ -27,7 +27,7 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Task')),
+      appBar: AppBar(title: const Text('Tambah Tugas')),
       body: SafeArea(
         child: Form(
           key: _formKey,
@@ -38,12 +38,12 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
                 controller: _titleController,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
-                  labelText: 'Title',
-                  hintText: 'Write the task title',
+                  labelText: 'Judul',
+                  hintText: 'Tulis judul tugas',
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Title is required';
+                    return 'Judul wajib diisi';
                   }
                   return null;
                 },
@@ -54,13 +54,13 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
                 minLines: 4,
                 maxLines: 8,
                 decoration: const InputDecoration(
-                  labelText: 'Description',
-                  hintText: 'Describe what needs to be done',
+                  labelText: 'Deskripsi',
+                  hintText: 'Jelaskan yang perlu dikerjakan',
                   alignLabelWithHint: true,
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Description is required';
+                    return 'Deskripsi wajib diisi';
                   }
                   return null;
                 },
@@ -74,7 +74,7 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.save),
-                label: Text(_isSubmitting ? 'Saving...' : 'Save task'),
+                label: Text(_isSubmitting ? 'Menyimpan...' : 'Simpan tugas'),
               ),
             ],
           ),
@@ -102,7 +102,7 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
       Navigator.of(context).pop();
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Task added')));
+      ).showSnackBar(const SnackBar(content: Text('Tugas berhasil ditambahkan')));
     } on ApiException catch (error) {
       if (!mounted) {
         return;
