@@ -74,10 +74,7 @@ class _TaskDetailContent extends ConsumerWidget {
             children: [
               _MetadataRow(label: 'Status', value: task.status.label),
               const Divider(height: 24),
-              _MetadataRow(
-                label: 'Dibuat',
-                value: _formatDate(task.createdAt),
-              ),
+              _MetadataRow(label: 'Dibuat', value: _formatDate(task.createdAt)),
               const Divider(height: 24),
               _MetadataRow(
                 label: 'Diperbarui',
@@ -100,7 +97,9 @@ class _TaskDetailContent extends ConsumerWidget {
                   return;
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Status tugas berhasil diperbarui')),
+                  const SnackBar(
+                    content: Text('Status tugas berhasil diperbarui'),
+                  ),
                 );
               } catch (error) {
                 if (!context.mounted) {
@@ -118,7 +117,7 @@ class _TaskDetailContent extends ConsumerWidget {
             ),
             label: Text(
               task.status == TaskStatus.done
-                  ? 'Tandai sebagai menunggu'
+                  ? 'Tandai sebagai pending'
                   : 'Tandai sebagai selesai',
             ),
           ),

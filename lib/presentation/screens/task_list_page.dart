@@ -254,7 +254,7 @@ class _PageHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Pelacak Tugas',
+                'Task Tracker',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w900,
                   letterSpacing: -1.2,

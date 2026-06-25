@@ -17,10 +17,10 @@ void main() {
     await _scrollUntilVisible(tester, find.text('Belajar Riverpod'));
     await _scrollUntilVisible(tester, find.text('Rapikan backlog mobile'));
 
-    expect(find.text('Pelacak Tugas'), findsOneWidget);
+    expect(find.text('Task Tracker'), findsOneWidget);
     expect(find.text('Belajar Riverpod'), findsOneWidget);
     expect(find.text('Rapikan backlog mobile'), findsOneWidget);
-    expect(find.text('Menunggu'), findsWidgets);
+    expect(find.text('Pending'), findsWidgets);
     expect(find.text('Sambungkan API detail'), findsNothing);
     expect(find.textContaining('Urutkan:'), findsOneWidget);
   });
@@ -35,7 +35,7 @@ void main() {
 
     expect(find.text('Detail Tugas'), findsOneWidget);
     expect(find.text('Status'), findsOneWidget);
-    expect(find.text('Menunggu'), findsWidgets);
+    expect(find.text('Pending'), findsWidgets);
   });
 
   testWidgets('switches between pending and done tabs', (tester) async {
@@ -60,7 +60,7 @@ void main() {
     await _scrollUntilVisible(tester, find.text('Belajar Riverpod'));
 
     expect(find.text('Belajar Riverpod'), findsOneWidget);
-    expect(find.text('Tidak ada tugas menunggu'), findsNothing);
+    expect(find.text('Tidak ada tugas pending'), findsNothing);
   });
 
   testWidgets('changes sorting order from newest to title a-z', (tester) async {
@@ -110,15 +110,17 @@ void main() {
   ) async {
     await tester.pumpWidget(_appWithRepository(_FakeTaskRepository(tasks: [])));
     await tester.pumpAndSettle();
-    await _scrollUntilVisible(tester, find.text('Tidak ada tugas menunggu'));
+    await _scrollUntilVisible(tester, find.text('Tidak ada tugas pending'));
 
-    expect(find.text('Tidak ada tugas menunggu'), findsOneWidget);
+    expect(find.text('Tidak ada tugas pending'), findsOneWidget);
   });
 
   testWidgets('renders API error state', (tester) async {
     await tester.pumpWidget(
       _appWithRepository(
-        _FakeTaskRepository(error: const ApiException('Server sedang tidak tersedia')),
+        _FakeTaskRepository(
+          error: const ApiException('Server sedang tidak tersedia'),
+        ),
       ),
     );
     await tester.pumpAndSettle();

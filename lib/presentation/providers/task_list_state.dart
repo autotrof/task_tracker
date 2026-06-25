@@ -1,7 +1,7 @@
 import '../../data/task.dart';
 
 enum TaskStatusFilter {
-  pending(TaskStatus.pending, 'Menunggu'),
+  pending(TaskStatus.pending, 'Pending'),
   done(TaskStatus.done, 'Selesai');
 
   const TaskStatusFilter(this.status, this.label);

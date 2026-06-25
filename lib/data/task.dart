@@ -16,7 +16,7 @@ enum TaskStatus {
   };
 
   String get label => switch (this) {
-    TaskStatus.pending => 'Menunggu',
+    TaskStatus.pending => 'Pending',
     TaskStatus.done => 'Selesai',
   };
 

@@ -27,7 +27,7 @@ class TaskTrackerApp extends StatelessWidget {
     final baseTextTheme = ThemeData(brightness: Brightness.light).textTheme;
 
     return MaterialApp(
-      title: 'Pelacak Tugas',
+      title: 'Task Tracker',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: colorScheme,

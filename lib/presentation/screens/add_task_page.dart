@@ -100,9 +100,9 @@ class _AddTaskPageState extends ConsumerState<AddTaskPage> {
         return;
       }
       Navigator.of(context).pop();
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Tugas berhasil ditambahkan')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Tugas berhasil ditambahkan')),
+      );
     } on ApiException catch (error) {
       if (!mounted) {
         return;

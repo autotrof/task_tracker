@@ -49,7 +49,9 @@ class TaskCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: IconButton(
-                    tooltip: isDone ? 'Tandai sebagai menunggu' : 'Tandai sebagai selesai',
+                    tooltip: isDone
+                        ? 'Tandai sebagai pending'
+                        : 'Tandai sebagai selesai',
                     onPressed: onToggleStatus,
                     icon: Icon(
                       isDone
