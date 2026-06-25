@@ -74,9 +74,15 @@ class _TaskDetailContent extends ConsumerWidget {
             children: [
               _MetadataRow(label: 'Status', value: task.status.label),
               const Divider(height: 24),
-              _MetadataRow(label: 'Created', value: _formatDate(task.createdAt)),
+              _MetadataRow(
+                label: 'Created',
+                value: _formatDate(task.createdAt),
+              ),
               const Divider(height: 24),
-              _MetadataRow(label: 'Updated', value: _formatDate(task.updatedAt)),
+              _MetadataRow(
+                label: 'Updated',
+                value: _formatDate(task.updatedAt),
+              ),
             ],
           ),
         ),
@@ -86,7 +92,9 @@ class _TaskDetailContent extends ConsumerWidget {
           child: FilledButton.icon(
             onPressed: () async {
               try {
-                await ref.read(taskListProvider.notifier).toggleTaskStatus(task);
+                await ref
+                    .read(taskListProvider.notifier)
+                    .toggleTaskStatus(task);
                 ref.invalidate(taskDetailProvider(task.id));
                 if (!context.mounted) {
                   return;

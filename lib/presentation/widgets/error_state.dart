@@ -36,9 +36,9 @@ class ErrorState extends StatelessWidget {
             const SizedBox(height: 18),
             Text(
               'Unable to load tasks',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),

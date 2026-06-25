@@ -15,14 +15,15 @@ class TaskTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: const Color(0xFF1746A2),
-      brightness: Brightness.light,
-    ).copyWith(
-      primary: const Color(0xFF1746A2),
-      secondary: const Color(0xFFE76F51),
-      surface: Colors.white,
-    );
+    final colorScheme =
+        ColorScheme.fromSeed(
+          seedColor: const Color(0xFF1746A2),
+          brightness: Brightness.light,
+        ).copyWith(
+          primary: const Color(0xFF1746A2),
+          secondary: const Color(0xFFE76F51),
+          surface: Colors.white,
+        );
     final baseTextTheme = ThemeData(brightness: Brightness.light).textTheme;
 
     return MaterialApp(

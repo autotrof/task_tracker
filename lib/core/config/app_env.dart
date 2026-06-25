@@ -23,9 +23,6 @@ final class AppEnv {
   }
 
   static String get apiBaseUrl {
-    return dotenv.get(
-      'API_BASE_URL',
-      fallback: 'http://localhost:8080/api',
-    );
+    return dotenv.get('API_BASE_URL', fallback: 'http://localhost:8080/api');
   }
 }

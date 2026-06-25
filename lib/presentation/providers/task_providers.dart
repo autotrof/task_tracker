@@ -36,8 +36,9 @@ final taskServiceProvider = Provider<TaskService>((ref) {
   return TaskService(ref.watch(taskRepositoryProvider));
 });
 
-final taskListProvider =
-    AsyncNotifierProvider<TaskListNotifier, TaskListState>(TaskListNotifier.new);
+final taskListProvider = AsyncNotifierProvider<TaskListNotifier, TaskListState>(
+  TaskListNotifier.new,
+);
 
 class TaskListNotifier extends AsyncNotifier<TaskListState> {
   static const _perPage = 20;
@@ -173,7 +174,9 @@ class TaskListNotifier extends AsyncNotifier<TaskListState> {
     }
 
     try {
-      final updatedTask = await ref.read(taskServiceProvider).toggleStatus(task);
+      final updatedTask = await ref
+          .read(taskServiceProvider)
+          .toggleStatus(task);
       final currentState = switch (state) {
         AsyncData(:final value) => value,
         _ => null,
@@ -187,13 +190,13 @@ class TaskListNotifier extends AsyncNotifier<TaskListState> {
         currentState.copyWith(
           tasks: switch (currentState.statusFilter.status) {
             final status when updatedTask.status != status => [
-                for (final item in currentState.tasks)
-                  if (item.id != updatedTask.id) item,
-              ],
+              for (final item in currentState.tasks)
+                if (item.id != updatedTask.id) item,
+            ],
             _ => [
-                for (final item in currentState.tasks)
-                  if (item.id == updatedTask.id) updatedTask else item,
-              ],
+              for (final item in currentState.tasks)
+                if (item.id == updatedTask.id) updatedTask else item,
+            ],
           },
         ),
       );
@@ -219,14 +222,16 @@ class TaskListNotifier extends AsyncNotifier<TaskListState> {
   }
 
   Future<PaginatedTasks> _fetchPage(int page) {
-    return ref.read(taskServiceProvider).loadTasks(
-      page: page,
-      perPage: _perPage,
-      search: _searchQuery,
-      status: _statusFilter.status,
-      sortBy: _sortOption.sortBy,
-      sortDirection: _sortOption.sortDirection,
-    );
+    return ref
+        .read(taskServiceProvider)
+        .loadTasks(
+          page: page,
+          perPage: _perPage,
+          search: _searchQuery,
+          status: _statusFilter.status,
+          sortBy: _sortOption.sortBy,
+          sortDirection: _sortOption.sortDirection,
+        );
   }
 
   TaskListState? get _currentState => switch (state) {

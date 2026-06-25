@@ -54,11 +54,7 @@ class DioTaskRepository implements TaskRepository {
     } on DioException catch (error) {
       final cachedTasks = await _readCachedTasks(cacheKey);
       if (cachedTasks.isNotEmpty && page == 1) {
-        return PaginatedTasks(
-          tasks: cachedTasks,
-          currentPage: 1,
-          lastPage: 1,
-        );
+        return PaginatedTasks(tasks: cachedTasks, currentPage: 1, lastPage: 1);
       }
       throw _toApiException(error);
     }
@@ -70,9 +66,9 @@ class DioTaskRepository implements TaskRepository {
       final response = await dio.get<Map<String, dynamic>>('/tasks/$id');
       return _parseTaskObject(response.data);
     } on DioException catch (error) {
-      final cachedTask = (await _readCachedTasks(_cacheKey))
-          .where((task) => task.id == id)
-          .firstOrNull;
+      final cachedTask = (await _readCachedTasks(
+        _cacheKey,
+      )).where((task) => task.id == id).firstOrNull;
       if (cachedTask != null) {
         return cachedTask;
       }
@@ -152,8 +148,7 @@ class DioTaskRepository implements TaskRepository {
     required String sortDirection,
   }) {
     final hasSearch = search != null && search.isNotEmpty;
-    final isDefaultSort =
-        sortBy == 'created_at' && sortDirection == 'desc';
+    final isDefaultSort = sortBy == 'created_at' && sortDirection == 'desc';
     if (!hasSearch && status == null && isDefaultSort) {
       return _cacheKey;
     }

@@ -87,10 +87,7 @@ void main() {
 
     cards = find.byType(Card);
     expect(
-      find.descendant(
-        of: cards.at(0),
-        matching: find.text('Belajar Riverpod'),
-      ),
+      find.descendant(of: cards.at(0), matching: find.text('Belajar Riverpod')),
       findsOneWidget,
     );
   });
@@ -217,21 +214,23 @@ class _FakeTaskRepository implements TaskRepository {
       throw error!;
     }
     final normalizedSearch = search?.trim().toLowerCase();
-    final filteredTasks = _tasks.where((task) {
-      final matchesStatus = status == null || task.status == status;
-      final matchesSearch =
-          normalizedSearch == null ||
-          normalizedSearch.isEmpty ||
-          task.title.toLowerCase().contains(normalizedSearch);
-      return matchesStatus && matchesSearch;
-    }).toList()
-      ..sort((left, right) {
-        final comparison = switch (sortBy) {
-          'title' => left.title.toLowerCase().compareTo(right.title.toLowerCase()),
-          _ => left.createdAt.compareTo(right.createdAt),
-        };
-        return sortDirection == 'asc' ? comparison : -comparison;
-      });
+    final filteredTasks =
+        _tasks.where((task) {
+          final matchesStatus = status == null || task.status == status;
+          final matchesSearch =
+              normalizedSearch == null ||
+              normalizedSearch.isEmpty ||
+              task.title.toLowerCase().contains(normalizedSearch);
+          return matchesStatus && matchesSearch;
+        }).toList()..sort((left, right) {
+          final comparison = switch (sortBy) {
+            'title' => left.title.toLowerCase().compareTo(
+              right.title.toLowerCase(),
+            ),
+            _ => left.createdAt.compareTo(right.createdAt),
+          };
+          return sortDirection == 'asc' ? comparison : -comparison;
+        });
     final start = (page - 1) * perPage;
     final end = start + perPage;
     final pagedTasks = filteredTasks.sublist(

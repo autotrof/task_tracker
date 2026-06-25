@@ -70,8 +70,7 @@ class _TaskListPageState extends ConsumerState<TaskListPage> {
                 const SizedBox(height: 18),
                 ErrorState(
                   message: '$error',
-                  onRetry: () =>
-                      ref.read(taskListProvider.notifier).refresh(),
+                  onRetry: () => ref.read(taskListProvider.notifier).refresh(),
                 ),
               ],
             ),
@@ -83,8 +82,9 @@ class _TaskListPageState extends ConsumerState<TaskListPage> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
                   itemCount: _itemCount(taskState) + 1,
-                  separatorBuilder: (_, index) =>
-                      index == 0 ? const SizedBox(height: 18) : const SizedBox(height: 12),
+                  separatorBuilder: (_, index) => index == 0
+                      ? const SizedBox(height: 18)
+                      : const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       return _PageHeader(
@@ -237,10 +237,7 @@ class _TaskListPageState extends ConsumerState<TaskListPage> {
 }
 
 class _PageHeader extends StatelessWidget {
-  const _PageHeader({
-    required this.searchBar,
-    this.bottomContent,
-  });
+  const _PageHeader({required this.searchBar, this.bottomContent});
 
   final Widget searchBar;
   final Widget? bottomContent;
@@ -287,10 +284,10 @@ class _StatusTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: const Color(0xFF1E293B),
-          borderRadius: BorderRadius.circular(16),
-        ),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E293B),
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Row(
         children: [
           for (final filter in TaskStatusFilter.values)
@@ -348,10 +345,7 @@ class _StatusTabButton extends StatelessWidget {
 }
 
 class _SortButton extends StatelessWidget {
-  const _SortButton({
-    required this.selectedOption,
-    required this.onSelected,
-  });
+  const _SortButton({required this.selectedOption, required this.onSelected});
 
   final TaskSortOption selectedOption;
   final ValueChanged<TaskSortOption> onSelected;
