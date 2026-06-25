@@ -64,6 +64,15 @@ flutter test
 flutter build apk
 ```
 
+## GitHub Actions
+
+This repo includes basic GitHub Actions workflows:
+
+- `Flutter CI` runs on every push and pull request with `flutter pub get`, format verification, `flutter analyze`, and `flutter test`.
+- `Android Release Artifact` can be triggered manually or by pushing a tag like `v1.0.0`, then builds a release APK and uploads it as a GitHub Actions artifact.
+
+The release workflow does not sign or publish to the Play Store yet. If needed, it can be extended later with GitHub Secrets for keystore signing and automated store delivery.
+
 ## Architecture
 
 The app is split into focused layers:
