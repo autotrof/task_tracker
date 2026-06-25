@@ -25,9 +25,17 @@ Contoh request:
 
 ```bash
 curl --request GET \
-  --url 'http://localhost:8080/api/tasks?per_page=10' \
+  --url 'http://localhost:8080/api/tasks?per_page=10&search=backend&status=pending&sort_by=created_at&sort_direction=desc' \
   --header 'Accept: application/json'
 ```
+
+Query parameter yang didukung:
+
+- `per_page` opsional, minimum `1`, maksimum `100`
+- `search` opsional, mencari task berdasarkan `title`
+- `status` opsional, nilai yang didukung: `pending`, `done`
+- `sort_by` opsional, nilai yang didukung: `title`, `created_at`
+- `sort_direction` opsional, nilai yang didukung: `asc`, `desc`
 
 Contoh response sukses `200 OK`:
 
